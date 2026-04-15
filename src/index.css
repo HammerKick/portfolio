@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+
+:root {
+  --font-playfair: "Playfair Display", serif;
+  --font-nunito: "Nunito", sans-serif;
+  --font-comfortaa: "Comfortaa", cursive;
+}
+
+body {
+  background-color: #f9faff;
+}
+
+@layer base {
+  h1,
+  h2 {
+    font-family: "Playfair Display", serif;
+  }
+}
