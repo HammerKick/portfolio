@@ -1,5 +1,6 @@
 {
-  "name": "portfolio-antoine-bournier",
+  "name": "portfolio",
+  "homepage": "https://hammerkick.github.io/portfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
