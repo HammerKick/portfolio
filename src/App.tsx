@@ -8,20 +8,23 @@ import { Footer } from "./bars/Footer";
 
 function App() {
   return (
-    <>
-      {" "}
-      <BrowserRouter>
-        <Navbar />
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <div className="bg-gray-100">
+          <Navbar />
+        </div>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cv" element={<CV />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cv" element={<CV />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </main>
 
         <Footer />
-      </BrowserRouter>
-    </>
+      </div>
+    </BrowserRouter>
   );
 }
 

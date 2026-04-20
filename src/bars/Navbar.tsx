@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 export function Navbar() {
   const navigate = useNavigate();
   return (
-    <nav className="w-full h-16 p-4 flex justify-between items-center max-w-6xl mt-10 ml-auto mr-auto">
+    <nav className="w-full h-16 p-4 flex justify-between items-center max-w-6xl ml-auto mr-auto">
       <div className="flex flex-col items-center justify-center font-nunito">
         Antoine Bournier
       </div>

@@ -27,18 +27,25 @@ const otherSkills = [
 
 export function CV() {
   return (
-    <div className="p-24">
-      <div className="grid grid-cols-6 items-center mb-10">
-        <div className="flex flex-col gap-2 col-span-3">
-          <h1 className="text-6xl font-bold mb-4">Antoine Bournier</h1>
-          <p className="text-lg text-gray-500">
-            Passionné d’informatique et de jeux vidéo, mon objectif est de créer
+    <div className="p-6 md:p-24">
+
+      <div className="grid grid-cols-1 md:grid-cols-6 items-center mb-10 gap-6">
+        <div className="flex justify-center md:hidden">
+          <img
+            src="/images/antoine bournier.png"
+            alt="Antoine Bournier"
+            className="rounded-lg shadow-lg h-48 w-48 object-cover"
+          />
+        </div>
+        <div className="flex flex-col gap-2 col-span-1 md:col-span-3 text-center md:text-left">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">Antoine Bournier</h1>
+          <p className="text-base md:text-lg text-gray-500">
+            Passionné d'informatique et de jeux vidéo, mon objectif est de créer
             des interfaces et des applications utiles et fluides en suivant mes
             passions et ma créativité
           </p>
         </div>
-
-        <div className="col-span-3 flex flex-row justify-end">
+        <div className="hidden md:flex col-span-3 flex-row justify-end">
           <img
             src="/images/antoine bournier.png"
             alt="Antoine Bournier"
@@ -47,19 +54,19 @@ export function CV() {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 justify-between gap-8 items-center mb-16">
-        <div className="col-span-3 flex flex-row justify-end">
+      <div className="flex flex-col md:grid md:grid-cols-12 justify-between gap-6 md:gap-8 items-center mb-16">
+        <div className="flex justify-center md:col-span-3 md:justify-end">
           <img
             src="/images/agile.png"
             alt="Méthode agile"
-            className="rounded-lg h-64 w-64 object-cover"
+            className="rounded-lg h-40 w-40 md:h-64 md:w-64 object-cover"
           />
         </div>
-        <div className="flex flex-col text-center gap-2 col-span-9">
-          <h1 className="text-6xl text-center font-bold mb-4">
+        <div className="flex flex-col text-center gap-2 md:col-span-9">
+          <h2 className="text-3xl md:text-6xl text-center font-bold mb-4">
             Ce qui me rend unique
-          </h1>
-          <ul className="text-lg text-gray-500">
+          </h2>
+          <ul className="text-base md:text-lg text-gray-500 list-none">
             <li className="mb-2">
               Une créativité débordante pour trouver des solutions innovantes
             </li>
@@ -79,9 +86,11 @@ export function CV() {
       </div>
 
       {/* Skills */}
-      <div className="mt-16 gap-12 flex flex-row bg-white rounded-lg shadow-lg p-8">
+      <div className="mt-16 gap-8 md:gap-12 flex flex-col md:flex-row bg-white rounded-lg shadow-lg p-6 md:p-8">
         <SkillCard name="Front-end" skills={frontendSkills} />
+        <hr className="md:hidden border-gray-200" />
         <SkillCard name="Back-end" skills={backendSkills} />
+        <hr className="md:hidden border-gray-200" />
         <SkillCard name="Autres compétences" skills={otherSkills} />
       </div>
     </div>
