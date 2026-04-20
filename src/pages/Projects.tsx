@@ -26,7 +26,7 @@ export function Projects() {
           </div>
           <div className="flex justify-center md:justify-end md:w-1/2">
             <img
-              src="/images/hammerkick-site.png"
+              src="/portfolio/images/hammerkick-site.png"
               alt="HammerKick"
               className="w-full h-auto object-contain"
             />
@@ -38,7 +38,7 @@ export function Projects() {
         <div className="flex flex-col md:flex-row justify-between items-stretch mb-8 md:mb-10 bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-3/4">
           <div className="flex justify-center md:justify-start md:w-1/2">
             <img
-              src="/images/backlog.png"
+              src="/portfolio/images/backlog.png"
               alt="Backlog"
               className="w-full h-auto object-contain"
             />

@@ -7,7 +7,7 @@ export function Home() {
       <div className="grid grid-cols-1 md:grid-cols-6 gap-8 items-center">
         <div className="col-span-1 md:col-span-3 flex justify-center md:justify-end md:order-last">
           <img
-            src="/public/images/antoine bournier.png"
+            src="/images/antoine bournier.png"
             alt="Antoine Bournier"
             className="rounded-lg shadow-lg h-64 w-64 md:h-96 md:w-96 object-cover"
           />
