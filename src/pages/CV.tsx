@@ -47,7 +47,7 @@ export function CV() {
         </div>
         <div className="hidden md:flex col-span-3 flex-row justify-end">
           <img
-            src="/portfolio/images/antoine bournier.png"
+            src="/portfolio/images/antoine-bournier.png"
             alt="Antoine Bournier"
             className="rounded-lg shadow-lg h-96 w-96 object-cover"
           />
