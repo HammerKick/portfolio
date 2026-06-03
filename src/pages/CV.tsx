@@ -1,98 +1,238 @@
+import { useState } from "react";
 import { SkillCard } from "../cards/SkillCard";
 
 const frontendSkills = [
-  { name: "Angular", rating: 4, icon: "/portfolio/images/angular.png" },
-  { name: "React", rating: 5, icon: "/portfolio/images/reactlogo.png" },
-  { name: "Vue", rating: 2, icon: "/portfolio/images/vue.png" },
-  { name: "JavaScript", rating: 5, icon: "/portfolio/images/JavaScript-Logo.png" },
-  { name: "TypeScript", rating: 5, icon: "/portfolio/images/Typescript_logo_.png" },
-  { name: "HTML", rating: 5, icon: "/portfolio/images/HTML5_logo_and_wordmark.png" },
-  { name: "CSS", rating: 4, icon: "/portfolio/images/CSS3_logo_and_wordmark.png" },
-  { name: "Tailwind", rating: 5, icon: "/portfolio/images/tailwind.png" },
+  { name: "React", rating: 5 },
+  { name: "TypeScript", rating: 5 },
+  { name: "Vue", rating: 2 },
+  { name: "Angular", rating: 4 },
+  { name: "JavaScript", rating: 5 },
+  { name: "HTML/CSS", rating: 5 },
+  { name: "Tailwind", rating: 5 },
+  { name: "Bootstrap", rating: 4 },
 ];
 
 const backendSkills = [
-  { name: "PHP", rating: 3, icon: "/portfolio/images/PHP.png" },
-  { name: "Symfony", rating: 3, icon: "/portfolio/images/symfony.png" },
-  { name: "MySQL", rating: 4, icon: "/portfolio/images/MySQL.png" },
-  { name: "PostgreSQL", rating: 3, icon: "/portfolio/images/Postgresql.svg" },
-  { name: "SQL", rating: 4, icon: "/portfolio/images/Sql_data_base_with_logo.png" },
-  { name: "Java", rating: 5, icon: "/portfolio/images/Java_Logo.svg" },
+  { name: "Node.js", rating: 5 },
+  { name: "Symfony", rating: 3 },
+  { name: "Java REST", rating: 5 },
+  { name: "PHP", rating: 3 },
+  { name: "Python", rating: 3 },
+  { name: "Bash", rating: 3 },
 ];
 
-const otherSkills = [
-  { name: "Excel", rating: 4, icon: "/portfolio/images/excel.png" },
-  { name: "VBA", rating: 5, icon: "/portfolio/images/vba.jpg" },
+const databaseSkills = [
+  { name: "SQL", rating: 4 },
+  { name: "PostgreSQL", rating: 3 },
+  { name: "MySQL", rating: 4 },
+  { name: "Oracle", rating: 2 },
+  { name: "MongoDB", rating: 2 },
+];
+
+const devopsSkills = [
+  { name: "Docker", rating: 3 },
+  { name: "Linux", rating: 4 },
+  { name: "CI/CD", rating: 2 },
+  { name: "Git", rating: 5 },
+  { name: "GitHub Actions", rating: 2 },
+  { name: "AWS (notions)", rating: 2 },
+];
+
+const dataSkills = [
+  { name: "VBA", rating: 5 },
+  { name: "Excel avancé", rating: 4 },
+  { name: "Automatisation data", rating: 2 },
+  { name: "Reporting SQL", rating: 1 },
+];
+
+const methodSkills = [
+  { name: "Agile Scrum", rating: 5},
+  { name: "Jira", rating: 5},
+  { name: "Git", rating: 5},
+  { name: "REST API", rating: 4 },
+  { name: "Clean Code", rating: 3 },
+  { name: "IA / ChatGPT / Claude", rating: 4 },
+];
+
+const experiences = [
+  {
+    period: "2025 → 2027",
+    title: "Mastère Lead Dev Full Stack",
+    company: "EEMI Paris · En alternance",
+    description: "Formation avancée full stack : React, Vue.js, Next.js, Symfony, Node.js/MongoDB, Docker, DevOps, Sécurité Web, Architecture logicielle, IA intégrée.",
+    tags: ["React", "Vue.js", "Docker", "DevOps", "Node.js"],
+  },
+  {
+    period: "2024 → 2025",
+    title: "Développeur Front-End — React / TypeScript",
+    company: "JG&Co · CDD",
+    description: "Développement d'interfaces interactives React/TypeScript pour 3 clients grands comptes (Casampro, Mitsubishi, Guy Hoquet). Interface B2B de simulation énergétique.",
+    tags: ["React", "TypeScript", "Tailwind", "REST API"],
+  },
+  {
+    period: "2019 → 2023",
+    title: "Développeur VBA / SQL — Grands comptes industriels",
+    company: "ESN AUSY · Missions Airbus & Safran",
+    description: "Développement d'outils d'automatisation pour Airbus (gestion satellites) et Safran (refonte BDD interne). Environnements industriels critiques, collaboration métier.",
+    tags: ["VBA", "SQL", "Oracle", "PostgreSQL", "Jira", "Agile"],
+  },
+  {
+    period: "2018 → 2019",
+    title: "Développeur VBA — Automatisation qualité",
+    company: "Groupe PSA · Alternance",
+    description: "Automatisation de la validation des pièces en usine, reporting multi-langue, fiches de suivi process.",
+    tags: ["VBA", "Excel", "Automatisation"],
+  },
+  {
+    period: "2017 → 2018",
+    title: "Développeur Full Stack",
+    company: "Wismas · Alternance",
+    description: "Applications web front & back pour Yoplait et Laforêt. Outils collaboratifs, listing produits, coordination client.",
+    tags: ["Angular 2", "Java REST", "SQL", "Bootstrap"],
+  },
+  {
+    period: "2020 → 2022",
+    title: "Commentateur officiel Overwatch League",
+    company: "Activision Blizzard · Freelance",
+    description: "Commentateur FR officiel pour l'Overwatch League. Tournois internationaux, millions de spectateurs, communication sous pression, vulgarisation technique.",
+    tags: ["Communication", "Live", "Esport", "Blizzard"],
+  }
+];
+
+type FilterType = "all" | "frontend" | "backend" | "database" | "devops" | "data" | "other";
+
+const filters: { label: string; value: FilterType }[] = [
+  { label: "Tout afficher", value: "all" },
+  { label: "Front-end", value: "frontend" },
+  { label: "Back-end", value: "backend" },
+  { label: "Bases de données", value: "database" },
+  { label: "Cloud & DevOps", value: "devops" },
+  { label: "Data & Automatisation", value: "data" },
+  { label: "Méthodes & Outils", value: "other" },
 ];
 
 export function CV() {
+  const [filter, setFilter] = useState<FilterType>("all");
+
   return (
     <div className="p-6 md:p-24">
 
-      <div className="grid grid-cols-1 md:grid-cols-6 items-center mb-10 gap-6">
-        <div className="flex justify-center md:hidden">
-          <img
-            src="/portfolio/images/antoine bournier.png"
-            alt="Antoine Bournier"
-            className="rounded-lg shadow-lg h-48 w-48 object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-2 col-span-1 md:col-span-3 text-center md:text-left">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Antoine Bournier</h1>
-          <p className="text-base md:text-lg text-gray-500">
-            Passionné d'informatique et de jeux vidéo, mon objectif est de créer
-            des interfaces et des applications utiles et fluides en suivant mes
-            passions et ma créativité
-          </p>
-        </div>
-        <div className="hidden md:flex col-span-3 flex-row justify-end">
-          <img
-            src="/portfolio/images/antoine-bournier.png"
-            alt="Antoine Bournier"
-            className="rounded-lg shadow-lg h-96 w-96 object-cover"
-          />
+      <div className="flex flex-col text-center gap-2 mb-8">
+        <h2 className="text-3xl md:text-6xl text-center font-bold mb-4">
+          Ce qui me rend unique
+        </h2>
+        <ul className="text-base md:text-lg text-gray-500 list-none">
+          <li className="mb-2">
+            Une créativité débordante pour trouver des solutions innovantes
+          </li>
+          <li className="mb-2">
+            Une grande capacité d'adaptation pour apprendre rapidement de
+            nouvelles technologies
+          </li>
+          <li className="mb-2">
+            Une forte motivation pour créer des applications utiles et fluides
+          </li>
+          <li className="mb-2">
+            Une culture d'internet me permettant d'être au plus proche du
+            besoin utilisateur
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-4">Diplômes et certifications</h2>
+        <div className="grid grid-cols-5 items-center justify-center gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+            <h3 className="text-lg font-bold mb-2">Mastère Lead Dev Full Stack</h3>
+            <p className="text-sm text-gray-500 mb-1">EEMI Paris</p>
+            <p className="text-sm text-gray-500">2025 - 2027 (en cours)</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+            <h3 className="text-xl font-bold mb-2">Licence SISW</h3>
+            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-gray-500">2018 - 2019</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+            <h3 className="text-xl font-bold mb-2">DUT Informatique</h3>
+            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-gray-500">2016 - 2018</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+            <h3 className="text-lg font-bold mb-2">EXIN Agile Scrum Fundation</h3>
+            <p className="text-sm text-gray-500 mb-1">EXIN</p>
+            <p className="text-sm text-gray-500">2026</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+            <h3 className="text-xl font-bold mb-2">TOEIC (910)</h3>
+            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-gray-500">2018</p>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col md:grid md:grid-cols-12 justify-between gap-6 md:gap-8 items-center mb-16">
-        <div className="flex justify-center md:col-span-3 md:justify-end">
-          <img
-            src="/portfolio/images/agile.png"
-            alt="Méthode agile"
-            className="rounded-lg h-40 w-40 md:h-64 md:w-64 object-cover"
-          />
-        </div>
-        <div className="flex flex-col text-center gap-2 md:col-span-9">
-          <h2 className="text-3xl md:text-6xl text-center font-bold mb-4">
-            Ce qui me rend unique
-          </h2>
-          <ul className="text-base md:text-lg text-gray-500 list-none">
-            <li className="mb-2">
-              Une créativité débordante pour trouver des solutions innovantes
-            </li>
-            <li className="mb-2">
-              Une grande capacité d'adaptation pour apprendre rapidement de
-              nouvelles technologies
-            </li>
-            <li className="mb-2">
-              Une forte motivation pour créer des applications utiles et fluides
-            </li>
-            <li className="mb-2">
-              Une culture d'internet me permettant d'être au plus proche du
-              besoin utilisateur
-            </li>
-          </ul>
-        </div>
+      <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-8">Mes compétences</h2>
+
+      <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+        {filters.map(({ label, value }) => (
+          <button
+            key={value}
+            onClick={() => setFilter(value)}
+            className={`px-5 py-2 rounded-lg text-sm border transition-all ${
+              filter === value
+                ? "bg-blue-100 text-blue-700 border-transparent font-medium"
+                : "bg-white text-gray-500 border-gray-200 hover:bg-gray-50 hover:text-gray-800"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      {/* Skills */}
-      <div className="mt-16 gap-8 md:gap-12 flex flex-col md:flex-row bg-white rounded-lg shadow-lg p-6 md:p-8">
-        <SkillCard name="Front-end" skills={frontendSkills} />
-        <hr className="md:hidden border-gray-200" />
-        <SkillCard name="Back-end" skills={backendSkills} />
-        <hr className="md:hidden border-gray-200" />
-        <SkillCard name="Autres compétences" skills={otherSkills} />
+      <div className={`bg-white rounded-lg shadow-lg p-6 md:p-8 ${
+        filter === "all"
+          ? "grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8 items-start"
+          : "flex flex-col md:flex-row flex-wrap gap-8 md:gap-12"
+      }`}>
+        {(filter === "all" || filter === "frontend") && (
+          <SkillCard name="Front-end" skills={frontendSkills} />
+        )}
+        {(filter === "all" || filter === "backend") && (
+          <SkillCard name="Back-end" skills={backendSkills} />
+        )}
+        {(filter === "all" || filter === "database") && (
+          <SkillCard name="Bases de données" skills={databaseSkills} />
+        )}
+        {(filter === "all" || filter === "devops") && (
+          <SkillCard name="Cloud & DevOps" skills={devopsSkills} />
+        )}
+        {(filter === "all" || filter === "data") && (
+          <SkillCard name="Data & Automatisation" skills={dataSkills} />
+        )}
+        {(filter === "all" || filter === "other") && (
+          <SkillCard name="Méthodes & Outils" skills={methodSkills} />
+        )}
       </div>
+
+      <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mt-8 mb-8">Mon parcours</h2>
+
+      <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mt-8 flex flex-col gap-6">
+        {experiences.map((exp, i) => (
+          <div key={i} className="border-b last:border-0 pb-6 last:pb-0">
+            <span className="text-xs text-green-500 font-semibold">{exp.period}</span>
+            <h3 className="font-bold text-lg mt-1">{exp.title}</h3>
+            <p className="text-blue-500 text-sm mb-2">{exp.company}</p>
+            <p className="text-sm text-gray-500 mb-3">{exp.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {exp.tags.map((tag) => (
+                <span key={tag} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }

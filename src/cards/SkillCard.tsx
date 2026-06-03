@@ -1,7 +1,6 @@
 interface Skill {
   name: string;
   rating: number;
-  icon: string;
 }
 
 interface SkillCardProps {
@@ -11,8 +10,8 @@ interface SkillCardProps {
 
 export function SkillCard({ name, skills }: SkillCardProps) {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full px-2">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4 font-playfair text-center">
+    <div className="flex flex-col items-start justify-start w-full h-full px-2">
+      <h2 className="text-2xl md:text-3xl font-bold mb-4 font-playfair text-left">
         {name}
       </h2>
       <div className="grid grid-cols-1 gap-4 w-full mt-4">
@@ -22,16 +21,9 @@ export function SkillCard({ name, skills }: SkillCardProps) {
             className="flex flex-col justify-between items-center"
           >
             <div className="flex flex-row gap-2 justify-between items-center w-full mb-1">
-              <div className="flex items-center gap-2 min-w-0">
-                <img
-                  src={skill.icon}
-                  alt={skill.name}
-                  className="w-5 h-5 md:w-6 md:h-6 object-contain flex-shrink-0"
-                />
-                <span className="text-xs md:text-sm font-medium text-body truncate">
-                  {skill.name}
-                </span>
-              </div>
+              <span className="text-xs md:text-sm font-medium text-body truncate">
+                {skill.name}
+              </span>
               <span className="text-xs md:text-sm font-medium text-body flex-shrink-0 ml-2">
                 {skill.rating}/5
               </span>
