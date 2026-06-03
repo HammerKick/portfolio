@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter basename="/portfolio">
       <div className="flex flex-col min-h-screen">
-        <div className="bg-gray-100">
+        <div className="bg-gray-800">
           <Navbar />
         </div>
 

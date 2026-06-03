@@ -2,31 +2,69 @@ import { useNavigate } from "react-router";
 
 export function Navbar() {
   const navigate = useNavigate();
+
   return (
-    <nav className="w-full h-16 p-4 flex justify-between items-center max-w-6xl ml-auto mr-auto">
-      <div className="flex flex-col items-center justify-center font-nunito">
-        Antoine Bournier
-      </div>
-      <ul className="flex flex-row gap-8 font-nunito">
-        <li
-          className="hover:cursor-pointer hover:text-gray-500"
+    <header className="border-b border-[#1c2a40]">
+      <nav className="max-w-7xl mx-auto h-20 px-6 md:px-10 flex items-center justify-between">
+        {/* Logo */}
+        <div
           onClick={() => navigate("/")}
+          className="
+            cursor-pointer
+            font-mono
+            text-xl
+            font-bold
+            text-[#00d4aa]
+            tracking-wider
+            select-none
+          "
         >
-          Accueil
-        </li>
-        <li
-          className="hover:cursor-pointer hover:text-gray-500"
-          onClick={() => navigate("/projects")}
-        >
-          Projets
-        </li>
-        <li
-          className="hover:cursor-pointer hover:text-gray-500"
-          onClick={() => navigate("/cv")}
-        >
-          CV
-        </li>
-      </ul>
-    </nav>
+          {"<AB/>"}
+        </div>
+
+        {/* Navigation */}
+        <ul className="flex items-center gap-8 md:gap-12">
+          <li
+            onClick={() => navigate("/")}
+            className="
+              cursor-pointer
+              text-slate-400
+              hover:text-[#00d4aa]
+              transition-colors
+              duration-300
+            "
+          >
+            Accueil
+          </li>
+
+          <li
+            onClick={() => navigate("/projects")}
+            className="
+              cursor-pointer
+              text-slate-400
+              hover:text-[#00d4aa]
+              transition-colors
+              duration-300
+            "
+          >
+            Projets
+          </li>
+
+          <li
+            onClick={() => navigate("/cv")}
+            className="
+              cursor-pointer
+              text-slate-400
+              hover:text-[#00d4aa]
+              transition-colors
+              duration-300
+            "
+          >
+            CV
+          </li>
+
+        </ul>
+      </nav>
+    </header>
   );
 }

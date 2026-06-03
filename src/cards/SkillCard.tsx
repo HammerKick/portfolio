@@ -10,31 +10,54 @@ interface SkillCardProps {
 
 export function SkillCard({ name, skills }: SkillCardProps) {
   return (
-    <div className="flex flex-col items-start justify-start w-full h-full px-2">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4 font-playfair text-left">
+    <div
+      className="
+        h-full
+        bg-[#0f1525]
+        border
+        border-[#1c2a40]
+        rounded-xl
+        p-6
+        transition-all
+        duration-300
+        hover:border-[#00d4aa]
+        hover:-translate-y-1
+      "
+    >
+      <h2
+        className="
+          text-[#00d4aa]
+          text-sm
+          uppercase
+          tracking-[0.25em]
+          font-semibold
+          mb-6
+        "
+      >
         {name}
       </h2>
-      <div className="grid grid-cols-1 gap-4 w-full mt-4">
+
+      <div className="flex flex-wrap gap-3">
         {skills.map((skill) => (
-          <div
+          <span
             key={skill.name}
-            className="flex flex-col justify-between items-center"
+            className="
+              px-3
+              py-2
+              rounded-md
+              text-sm
+              text-slate-300
+              bg-[#111a2e]
+              border
+              border-[#22415a]
+              hover:border-[#00d4aa]
+              hover:text-[#00d4aa]
+              transition-all
+              duration-300
+            "
           >
-            <div className="flex flex-row gap-2 justify-between items-center w-full mb-1">
-              <span className="text-xs md:text-sm font-medium text-body truncate">
-                {skill.name}
-              </span>
-              <span className="text-xs md:text-sm font-medium text-body flex-shrink-0 ml-2">
-                {skill.rating}/5
-              </span>
-            </div>
-            <div className="w-full bg-neutral-quaternary rounded-full h-3 md:h-4">
-              <div
-                className="bg-green-600 h-3 md:h-4 rounded-full transition-all"
-                style={{ width: `${(skill.rating / 5) * 100}%` }}
-              />
-            </div>
-          </div>
+            {skill.name}
+          </span>
         ))}
       </div>
     </div>

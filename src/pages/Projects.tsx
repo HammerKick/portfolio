@@ -81,7 +81,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasLinks = project.liveUrl || project.githubUrl;
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-stretch mb-8 md:mb-10 bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-3/4">
+    <div className="flex flex-col md:flex-row justify-between items-stretch mb-8 md:mb-10 bg-[#0f1525] rounded-lg shadow-lg overflow-hidden w-full md:w-3/4">
       {/* Contenu texte */}
       <div
         className={`flex flex-col gap-2 p-6 md:p-8 ${

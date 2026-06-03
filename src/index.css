@@ -2,13 +2,20 @@
 @import "flowbite/src/themes/default";
 
 :root {
-  --font-playfair: "Playfair Display", serif;
-  --font-nunito: "Nunito", sans-serif;
-  --font-comfortaa: "Comfortaa", cursive;
+  --bg-primary: #070b17;
+  --bg-secondary: #0f1525;
+  --border-color: #1c2a40;
+
+  --text-primary: #f5f7fa;
+  --text-secondary: #94a3b8;
+
+  --accent: #00d4aa;
+  --accent-hover: #00f0c0;
 }
 
 body {
-  background-color: #f9faff;
+  background: #070b17;
+  color: #f5f7fa;
 }
 
 @layer base {

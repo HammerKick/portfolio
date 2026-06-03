@@ -142,35 +142,41 @@ export function CV() {
       <div>
         <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-4">Diplômes et certifications</h2>
         <div className="grid grid-cols-5 items-center justify-center gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]">
             <h3 className="text-lg font-bold mb-2">Mastère Lead Dev Full Stack</h3>
-            <p className="text-sm text-gray-500 mb-1">EEMI Paris</p>
-            <p className="text-sm text-gray-500">2025 - 2027 (en cours)</p>
+            <p className="text-sm text-slate-400 mb-1">EEMI Paris</p>
+            <p className="text-sm text-slate-400">2025 - 2027 (en cours)</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]">
             <h3 className="text-xl font-bold mb-2">Licence SISW</h3>
-            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-gray-500">2018 - 2019</p>
+            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-slate-400">2018 - 2019</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]">
             <h3 className="text-xl font-bold mb-2">DUT Informatique</h3>
-            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-gray-500">2016 - 2018</p>
+            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-slate-400">2016 - 2018</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]">
             <h3 className="text-lg font-bold mb-2">EXIN Agile Scrum Fundation</h3>
-            <p className="text-sm text-gray-500 mb-1">EXIN</p>
-            <p className="text-sm text-gray-500">2026</p>
+            <p className="text-sm text-slate-400 mb-1">EXIN</p>
+            <p className="text-sm text-slate-400">2026</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]">
             <h3 className="text-xl font-bold mb-2">TOEIC (910)</h3>
-            <p className="text-sm text-gray-500 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-gray-500">2018</p>
+            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
+            <p className="text-sm text-slate-400">2018</p>
           </div>
         </div>
       </div>
 
-      <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-8">Mes compétences</h2>
+      <div className="flex items-center justify-center gap-4 mb-10">
+
+        <h2 className="text-3xl md:text-5xl flex font-bold text-white">
+          Stack technique
+        </h2>
+        
+      </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
         {filters.map(({ label, value }) => (
@@ -188,7 +194,7 @@ export function CV() {
         ))}
       </div>
 
-      <div className={`bg-white rounded-lg shadow-lg p-6 md:p-8 ${
+      <div className={`bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 ${
         filter === "all"
           ? "grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8 items-start"
           : "flex flex-col md:flex-row flex-wrap gap-8 md:gap-12"
@@ -215,7 +221,7 @@ export function CV() {
 
       <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mt-8 mb-8">Mon parcours</h2>
 
-      <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mt-8 flex flex-col gap-6">
+      <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 mt-8 flex flex-col gap-6">
         {experiences.map((exp, i) => (
           <div key={i} className="border-b last:border-0 pb-6 last:pb-0">
             <span className="text-xs text-green-500 font-semibold">{exp.period}</span>
