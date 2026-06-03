@@ -95,7 +95,7 @@ function ProjectCard({ project }: { project: Project }) {
               {project.icon}
             </span>
           )}
-          <h2 className="text-2xl md:text-3xl font-bold leading-tight">
+          <h2 className="text-[#00d4aa] text-2xl uppercase font-semibold">
             {project.title}
           </h2>
         </div>
