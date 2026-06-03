@@ -184,7 +184,7 @@ export function CV() {
             <p className="text-sm text-slate-400 mb-1">EXIN</p>
             <p className="text-sm text-slate-400">2026</p>
           </div>
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40]hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all               duration-300">
+          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all               duration-300">
             <h2 className="text-[#00d4aa] text-sm uppercase tracking-[0.25em] font-semibold mb-6">
               TOEIC (910)
             </h2>
