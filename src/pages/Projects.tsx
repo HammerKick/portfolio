@@ -18,7 +18,7 @@ const projects: Project[] = [
     tags: ["React", "CSS", "GitHub Pages"],
     image: "/portfolio/images/hammerkick-site.png",
     liveUrl: "https://hammerkick.fr",
-    githubUrl: "https://github.com/HammerKick",
+    githubUrl: "https://github.com/HammerKick/hammerkick-site",
     icon: "⌨️",
   },
   {
@@ -27,7 +27,7 @@ const projects: Project[] = [
       "Site Symfony et Twig permettant d'ajouter et de noter des jeux vidéo tout en écrivant une critique. Projet d'école lors de mes études à l'EEMI qui m'a appris à manipuler le framework Symfony.",
     tags: ["Symfony", "Twig"],
     image: "/portfolio/images/backlog.png",
-    githubUrl: "https://github.com/HammerKick",
+    githubUrl: "https://github.com/HammerKick/Backlog",
     icon: "🎮",
   },
   {
@@ -37,7 +37,7 @@ const projects: Project[] = [
     tags: ["React", "TypeScript", "Tailwind"],
     liveUrl: "#",
     image: "/portfolio/images/ce-portfolio.PNG",
-    githubUrl: "https://github.com/HammerKick",
+    githubUrl: "https://github.com/HammerKick/portfolio",
     icon: "💼",
   },
   {
