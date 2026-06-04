@@ -1,3 +1,5 @@
+import { useInView } from "../hooks/useInView";
+
 interface Project {
   title: string;
   description: string;
@@ -76,19 +78,29 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { ref, inView } = useInView();
+  const fromLeft = index % 2 === 0;
   const hasImage = Boolean(project.image);
   const hasLinks = project.liveUrl || project.githubUrl;
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-stretch mb-8 md:mb-10 bg-[#0f1525] rounded-lg shadow-lg overflow-hidden w-full md:w-3/4">
-      {/* Contenu texte */}
+    <div
+      ref={ref}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView
+          ? "translateX(0)"
+          : `translateX(${fromLeft ? "-40px" : "40px"})`,
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+      }}
+      className="flex flex-col md:flex-row justify-between items-stretch mb-8 md:mb-10 bg-[#0f1525] rounded-lg shadow-lg overflow-hidden w-full md:w-3/4"
+    >
       <div
         className={`flex flex-col gap-2 p-6 md:p-8 ${
           hasImage ? "md:w-1/2" : "w-full"
         }`}
       >
-        {/* Icône + titre */}
         <div className="flex items-center gap-3 mb-2">
           {project.icon && (
             <span className="text-3xl" aria-hidden>
@@ -104,7 +116,6 @@ function ProjectCard({ project }: { project: Project }) {
           {project.description}
         </p>
 
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-3">
           {project.tags.map((tag) => (
             <span
@@ -116,7 +127,6 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {/* Liens */}
         {hasLinks && (
           <div className="flex flex-wrap gap-3 mt-4">
             {project.liveUrl && (
@@ -143,7 +153,6 @@ function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      {/* Image — affichée seulement si elle existe */}
       {hasImage && (
         <div className="flex justify-center md:justify-end md:w-1/2">
           <img
@@ -166,7 +175,7 @@ export function Projects() {
 
       <div className="flex flex-col items-center px-4 md:px-0">
         {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
+          <ProjectCard key={index} project={project} index={index} />
         ))}
       </div>
     </div>

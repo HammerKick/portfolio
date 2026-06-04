@@ -7,7 +7,10 @@ export function Home() {
     <div className="min-h-screen px-8 py-12 md:px-24 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-6 gap-16 items-center">
         {/* PHOTO + INFOS */}
-        <div className="col-span-1 md:col-span-3 flex justify-center md:justify-end md:order-last">
+        <div
+          className="col-span-1 md:col-span-3 flex justify-center md:justify-end md:order-last anim-fade-right"
+          style={{ animationDelay: "100ms" }}
+        >
           <div className="flex flex-col items-center gap-6">
             <img
               src="/portfolio/images/antoine-bournier.png"
@@ -36,44 +39,34 @@ export function Home() {
                 p-5
               "
             >
-              <InfoRow
-                label="Localisation"
-                value="Châtillon, Hauts-de-Seine"
-              />
+              <InfoRow label="Localisation" value="Châtillon, Hauts-de-Seine" />
 
-              <InfoRow
-                label="Disponibilité"
-                value="Dès que possible"
-              />
+              <InfoRow label="Disponibilité" value="Dès que possible" />
 
               <InfoRow
                 label="Rythme"
                 value="3 sem. entreprise / 1 sem. école"
               />
 
-              <InfoRow
-                label="Anglais"
-                value="C1 - TOEIC 910"
-              />
+              <InfoRow label="Anglais" value="C1 - TOEIC 910" />
 
-              <InfoRow
-                label="Statut"
-                value="Titulaire RQTH"
-                last
-              />
+              <InfoRow label="Statut" value="Titulaire RQTH" last />
             </div>
           </div>
         </div>
 
         {/* TEXTE */}
-        <div className="col-span-1 md:col-span-3 flex flex-col">
-
+        <div
+          className="col-span-1 md:col-span-3 flex flex-col anim-fade-left"
+          style={{ animationDelay: "100ms" }}
+        >
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
             Bonjour<span className="text-[#00d4aa]"> !</span>
           </h1>
 
           <p className="text-slate-400 text-base md:text-lg leading-8">
-            Je suis <span className="text-white font-semibold">Antoine Bournier</span>{" "}
+            Je suis{" "}
+            <span className="text-white font-semibold">Antoine Bournier</span>{" "}
             et vous êtes sur mon portfolio.
             <br />
             <br />
@@ -86,9 +79,9 @@ export function Home() {
             <br />
             <br />
             Actuellement en Mastère Lead Dev Full Stack à l'EEMI Paris, je
-            recherche une alternance pour contribuer à des projets web
-            ambitieux : applications cloud, interfaces B2B, automatisation et
-            outils métiers.
+            recherche une alternance pour contribuer à des projets web ambitieux
+            : applications cloud, interfaces B2B, automatisation et outils
+            métiers.
             <br />
             <br />
             En dehors du code, je suis commentateur esport officiel Blizzard
@@ -180,9 +173,7 @@ function InfoRow({ label, value, last }: InfoRowProps) {
         <span className="text-white font-medium text-right">{value}</span>
       </div>
 
-      {!last && (
-        <div className="border-b border-[#1c2a40]" />
-      )}
+      {!last && <div className="border-b border-[#1c2a40]" />}
     </>
   );
 }

@@ -1,5 +1,44 @@
 import { useState } from "react";
 import { SkillCard } from "../cards/SkillCard";
+import { useInView } from "../hooks/useInView";
+
+type AnimVariant = "fade-up" | "fade-left" | "fade-right";
+
+function Animated({
+  children,
+  variant = "fade-up",
+  delay = 0,
+  threshold = 0.15,
+  className = "",
+}: {
+  children: React.ReactNode;
+  variant?: AnimVariant;
+  delay?: number;
+  threshold?: number;
+  className?: string;
+}) {
+  const { ref, inView } = useInView(threshold);
+
+  const initial: Record<AnimVariant, string> = {
+    "fade-up": "translateY(28px)",
+    "fade-left": "translateX(-36px)",
+    "fade-right": "translateX(36px)",
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translate(0)" : initial[variant],
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 const frontendSkills = [
   { name: "React", rating: 5 },
@@ -52,6 +91,34 @@ const methodSkills = [
   { name: "REST API", rating: 4 },
   { name: "Clean Code", rating: 3 },
   { name: "IA / ChatGPT / Claude", rating: 4 },
+];
+
+const diplomas = [
+  {
+    title: "Mastère Lead Dev Full Stack",
+    school: "EEMI Paris",
+    period: "2025 - 2027 (en cours)",
+  },
+  {
+    title: "Licence SISW",
+    school: "IUT de Vélizy",
+    period: "2018 - 2019",
+  },
+  {
+    title: "DUT Informatique",
+    school: "IUT de Vélizy",
+    period: "2016 - 2018",
+  },
+  {
+    title: "EXIN Agile Scrum Fundation",
+    school: "EXIN",
+    period: "2026",
+  },
+  {
+    title: "TOEIC (910)",
+    school: "IUT de Vélizy",
+    period: "2018",
+  },
 ];
 
 const experiences = [
@@ -129,7 +196,11 @@ export function CV() {
 
   return (
     <div className="p-6 md:p-24">
-      <div className="flex flex-col text-center gap-2 mb-8">
+      {/* ── Section : Ce qui me rend unique ── */}
+      <Animated
+        variant="fade-up"
+        className="flex flex-col text-center gap-2 mb-8"
+      >
         <h2 className="text-3xl md:text-6xl text-center font-bold mb-4">
           Ce qui me rend unique
         </h2>
@@ -149,58 +220,46 @@ export function CV() {
             utilisateur
           </li>
         </ul>
-      </div>
+      </Animated>
 
+      {/* ── Section : Diplômes ── */}
       <div>
-        <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-4">
-          Diplômes et certifications
-        </h2>
-        <div className="grid grid-cols-5 items-center justify-center gap-6 mb-8">
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all duration-300">
-            <h2 className="text-[#00d4aa] text-sm uppercase font-semibold mb-6">
-              Mastère Lead Dev Full Stack
-            </h2>
-            <p className="text-sm text-slate-400 mb-1">EEMI Paris</p>
-            <p className="text-sm text-slate-400">2025 - 2027 (en cours)</p>
-          </div>
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all duration-300">
-            <h2 className="text-[#00d4aa] text-sm uppercase tracking-[0.25em] font-semibold mb-6">
-              Licence SISW
-            </h2>
-            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-slate-400">2018 - 2019</p>
-          </div>
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all duration-300">
-            <h2 className="text-[#00d4aa] text-sm uppercase tracking-[0.25em] font-semibold mb-6">
-              DUT Informatique
-            </h2>
-            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-slate-400">2016 - 2018</p>
-          </div>
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all               duration-300">
-            <h2 className="text-[#00d4aa] text-xs uppercase font-semibold mb-6">
-              EXIN Agile Scrum Fundation
-            </h2>
-            <p className="text-sm text-slate-400 mb-1">EXIN</p>
-            <p className="text-sm text-slate-400">2026</p>
-          </div>
-          <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full md:w-auto border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all               duration-300">
-            <h2 className="text-[#00d4aa] text-sm uppercase tracking-[0.25em] font-semibold mb-6">
-              TOEIC (910)
-            </h2>
-            <p className="text-sm text-slate-400 mb-1">IUT de Vélizy</p>
-            <p className="text-sm text-slate-400">2018</p>
-          </div>
+        <Animated variant="fade-up">
+          <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-4">
+            Diplômes et certifications
+          </h2>
+        </Animated>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-center justify-center gap-6 mb-8">
+          {diplomas.map((d, i) => (
+            <Animated key={i} variant="fade-up" delay={i * 80} threshold={0.1}>
+              <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 w-full border border-[#1c2a40] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-all duration-300">
+                <h2 className="text-[#00d4aa] text-sm uppercase font-semibold mb-6">
+                  {d.title}
+                </h2>
+                <p className="text-sm text-slate-400 mb-1">{d.school}</p>
+                <p className="text-sm text-slate-400">{d.period}</p>
+              </div>
+            </Animated>
+          ))}
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-4 mb-10">
+      {/* ── Section : Stack technique ── */}
+      <Animated
+        variant="fade-up"
+        className="flex items-center justify-center gap-4 mb-10"
+      >
         <h2 className="text-3xl md:text-5xl flex font-bold text-white">
           Stack technique
         </h2>
-      </div>
+      </Animated>
 
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+      <Animated
+        variant="fade-up"
+        delay={100}
+        className="flex flex-wrap items-center justify-center gap-3 mb-6"
+      >
         {filters.map(({ label, value }) => (
           <button
             key={value}
@@ -214,42 +273,51 @@ export function CV() {
             {label}
           </button>
         ))}
-      </div>
+      </Animated>
 
-      <div
-        className={`bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 ${
-          filter === "all"
-            ? "grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8 items-start"
-            : "flex flex-col md:flex-row flex-wrap gap-8 md:gap-12"
-        }`}
-      >
-        {(filter === "all" || filter === "frontend") && (
-          <SkillCard name="Front-end" skills={frontendSkills} />
-        )}
-        {(filter === "all" || filter === "backend") && (
-          <SkillCard name="Back-end" skills={backendSkills} />
-        )}
-        {(filter === "all" || filter === "database") && (
-          <SkillCard name="Bases de données" skills={databaseSkills} />
-        )}
-        {(filter === "all" || filter === "devops") && (
-          <SkillCard name="Cloud & DevOps" skills={devopsSkills} />
-        )}
-        {(filter === "all" || filter === "data") && (
-          <SkillCard name="Data & Automatisation" skills={dataSkills} />
-        )}
-        {(filter === "all" || filter === "other") && (
-          <SkillCard name="Méthodes & Outils" skills={methodSkills} />
-        )}
-      </div>
+      <Animated variant="fade-up" delay={200} threshold={0.05}>
+        <div
+          className={`bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 ${
+            filter === "all"
+              ? "grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8 items-start"
+              : "flex flex-col md:flex-row flex-wrap gap-8 md:gap-12"
+          }`}
+        >
+          {(filter === "all" || filter === "frontend") && (
+            <SkillCard name="Front-end" skills={frontendSkills} />
+          )}
+          {(filter === "all" || filter === "backend") && (
+            <SkillCard name="Back-end" skills={backendSkills} />
+          )}
+          {(filter === "all" || filter === "database") && (
+            <SkillCard name="Bases de données" skills={databaseSkills} />
+          )}
+          {(filter === "all" || filter === "devops") && (
+            <SkillCard name="Cloud & DevOps" skills={devopsSkills} />
+          )}
+          {(filter === "all" || filter === "data") && (
+            <SkillCard name="Data & Automatisation" skills={dataSkills} />
+          )}
+          {(filter === "all" || filter === "other") && (
+            <SkillCard name="Méthodes & Outils" skills={methodSkills} />
+          )}
+        </div>
+      </Animated>
 
-      <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mt-8 mb-8">
-        Mon parcours
-      </h2>
+      <Animated variant="fade-up">
+        <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mt-8 mb-8">
+          Mon parcours
+        </h2>
+      </Animated>
 
       <div className="bg-[#0f1525] rounded-lg shadow-lg p-6 md:p-8 mt-8 flex flex-col gap-6">
         {experiences.map((exp, i) => (
-          <div key={i} className="border-b last:border-0 pb-6 last:pb-0">
+          <Animated
+            key={i}
+            variant={i % 2 === 0 ? "fade-left" : "fade-right"}
+            threshold={0.1}
+            className="border-b last:border-0 pb-6 last:pb-0"
+          >
             <span className="text-x font-semibold">{exp.period}</span>
             <h2 className="text-[#00d4aa] text-lg uppercase font-semibold mb-6">
               {exp.title}
@@ -266,7 +334,7 @@ export function CV() {
                 </span>
               ))}
             </div>
-          </div>
+          </Animated>
         ))}
       </div>
     </div>
