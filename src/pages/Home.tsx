@@ -8,7 +8,7 @@ export function Home() {
       <div className="grid grid-cols-1 md:grid-cols-6 gap-16 items-center">
         {/* PHOTO + INFOS */}
         <div
-          className="col-span-1 md:col-span-3 flex justify-center md:justify-end md:order-last anim-fade-right"
+          className="col-span-1 md:col-span-2 flex justify-center md:justify-end md:order-last anim-fade-right"
           style={{ animationDelay: "100ms" }}
         >
           <div className="flex flex-col items-center gap-6">
@@ -57,7 +57,7 @@ export function Home() {
 
         {/* TEXTE */}
         <div
-          className="col-span-1 md:col-span-3 flex flex-col anim-fade-left"
+          className="col-span-1 md:col-span-4 flex flex-col anim-fade-left"
           style={{ animationDelay: "100ms" }}
         >
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
