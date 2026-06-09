@@ -166,9 +166,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-export function Projects() {
+export function Projects({ id }: { id?: string }) {
   return (
-    <div>
+    <div id={id}>
       <h1 className="flex items-center justify-center text-4xl md:text-6xl font-bold mb-8 md:mb-12 mt-4 px-4">
         Mes projets
       </h1>

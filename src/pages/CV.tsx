@@ -191,16 +191,13 @@ const filters: { label: string; value: FilterType }[] = [
   { label: "Méthodes & Outils", value: "other" },
 ];
 
-export function CV() {
+export function CV({ id }: { id?: string }) {
   const [filter, setFilter] = useState<FilterType>("all");
 
   return (
-    <div className="p-6 md:p-24">
+    <div className="p-6 md:p-24" id={id}>
       {/* ── Section : Ce qui me rend unique ── */}
-      <Animated
-        variant="fade-up"
-        className="flex flex-col text-center gap-2 mb-8"
-      >
+      <Animated variant="fade-up" className="flex flex-col text-center gap-2">
         <h2 className="text-3xl md:text-6xl text-center font-bold mb-4">
           Ce qui me rend unique
         </h2>
@@ -225,7 +222,7 @@ export function CV() {
       {/* ── Section : Diplômes ── */}
       <div>
         <Animated variant="fade-up">
-          <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mb-4">
+          <h2 className="text-2xl flex items-center justify-center md:text-5xl font-bold mt-12 mb-4">
             Diplômes et certifications
           </h2>
         </Animated>

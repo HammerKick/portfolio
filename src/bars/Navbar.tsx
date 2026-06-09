@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router";
-
 export function Navbar() {
-  const navigate = useNavigate();
-
   return (
     <header className="border-b border-[#1c2a40]">
       <nav className="max-w-7xl mx-auto h-20 px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
         <div
-          onClick={() => navigate("/")}
+          onClick={() =>
+            document
+              .getElementById("home")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
           className="
             cursor-pointer
             font-mono
@@ -25,7 +25,11 @@ export function Navbar() {
         {/* Navigation */}
         <ul className="flex items-center gap-8 md:gap-12">
           <li
-            onClick={() => navigate("/")}
+            onClick={() =>
+              document
+                .getElementById("home")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="
               cursor-pointer
               text-slate-400
@@ -38,20 +42,11 @@ export function Navbar() {
           </li>
 
           <li
-            onClick={() => navigate("/projects")}
-            className="
-              cursor-pointer
-              text-slate-400
-              hover:text-[#00d4aa]
-              transition-colors
-              duration-300
-            "
-          >
-            Projets
-          </li>
-
-          <li
-            onClick={() => navigate("/cv")}
+            onClick={() =>
+              document
+                .getElementById("cv")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="
               cursor-pointer
               text-slate-400
@@ -63,6 +58,22 @@ export function Navbar() {
             CV
           </li>
 
+          <li
+            onClick={() =>
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="
+              cursor-pointer
+              text-slate-400
+              hover:text-[#00d4aa]
+              transition-colors
+              duration-300
+            "
+          >
+            Projets
+          </li>
         </ul>
       </nav>
     </header>

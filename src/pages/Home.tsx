@@ -1,10 +1,6 @@
-import { useNavigate } from "react-router";
-
-export function Home() {
-  const navigate = useNavigate();
-
+export function Home({ id }: { id?: string }) {
   return (
-    <div className="min-h-screen px-8 py-12 md:px-24 md:py-20">
+    <div id={id} className="min-h-screen px-8 py-12 md:px-24 md:py-20">
       <div className="grid grid-cols-1 md:grid-cols-6 gap-16 items-center">
         {/* PHOTO + INFOS */}
         <div
@@ -98,7 +94,11 @@ export function Home() {
 
           <div className="flex flex-wrap gap-4 mt-10">
             <button
-              onClick={() => navigate("/projects")}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="
                 px-6
                 py-3
@@ -110,24 +110,29 @@ export function Home() {
                 duration-300
                 hover:bg-[#00f0c0]
                 hover:scale-105
+                cursor-pointer
               "
             >
               Mes projets
             </button>
 
             <button
-              onClick={() => navigate("/cv")}
+              onClick={() =>
+                document
+                  .getElementById("cv")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="
                 px-6
                 py-3
                 rounded-lg
                 border
-                border-[#1c2a40]
                 text-white
                 transition-all
                 duration-300
                 hover:border-[#00d4aa]
                 hover:text-[#00d4aa]
+                cursor-pointer
               "
             >
               Mon CV
@@ -148,6 +153,7 @@ export function Home() {
                 transition-all
                 duration-300
                 hover:bg-blue-700
+                cursor-pointer
               "
             >
               LinkedIn

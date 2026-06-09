@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { Home } from "./pages/Home";
 import { CV } from "./pages/CV";
@@ -10,16 +10,13 @@ function App() {
   return (
     <BrowserRouter basename="/portfolio">
       <div className="flex flex-col min-h-screen">
-        <div className="bg-gray-800">
+        <div className="bg-linear-to-r from-[#0f1525] to-[#1c2a40] sticky top-0 z-50">
           <Navbar />
         </div>
-
         <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cv" element={<CV />} />
-            <Route path="/projects" element={<Projects />} />
-          </Routes>
+          <Home id="home" />
+          <CV id="cv" />
+          <Projects id="projects" />
         </main>
 
         <Footer />
